@@ -1,11 +1,20 @@
 import { StatusBar } from 'expo-status-bar';
-import { useEffect, useState } from 'react';
-import { ProgressViewIOSComponent, ScrollView, StyleSheet, Text, View } from 'react-native';
-import Task from './components/Tarefa';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import ActionButton from './components/ActionButton';
+import Task from './components/Task';
 
-var prop = {
+let prop = {
   index: 1,
-  task: 'Comprar bebida',
+  task: 'Comprar Alface',
+  deleteTask: function () {
+    console.log('Deletado');
+  }
+  
+}
+
+let prop2 = {
+  index: 2,
+  task: 'Terminar o Livro',
   deleteTask: function () {
     console.log('Deletado');
   }
@@ -18,7 +27,9 @@ export default function App() {
       <StatusBar style="auto" />
       <ScrollView style={styles.scrollView}>
         <Task index={prop.index} task={prop.task} deleteTask={prop.deleteTask}></Task>
+        <Task index={prop2.index} task={prop2.task} deleteTask={prop2.deleteTask}></Task>
       </ScrollView>
+      <ActionButton></ActionButton>
     </View>
   );
 }
@@ -26,20 +37,18 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#1E1A3C',
+    backgroundColor: '#003964',
   },
   heading: {
     color: "#fff",
     fontSize: 28,
-    fontWeight: '600',
+    fontWeight: 'bold',
     marginTop: 55,
     marginLeft: 20,
     marginBottom: 38
   },
   scrollView: {
     marginBottom: 70,
-  },
-  taskContainer: {
-    marginTop: 20,
   }
+  
 });

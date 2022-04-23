@@ -21,10 +21,11 @@ export default function Task(props: any) {
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        marginHorizontal: 20
+        marginHorizontal: 20,
+        marginBottom: 20
     },
     taskIndexContainer: {
-        backgroundColor: "#3E3364",
+        backgroundColor: "#65ACC0",
         borderRadius: 15,
         marginRight: 10,
         alignItems: 'center',
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center'
     },
     taskContainer: {
-        backgroundColor: "#3E3364",
+        backgroundColor: "#65ACC0",
         borderRadius: 12,
         flexDirection: 'row',
         justifyContent: 'space-between',
