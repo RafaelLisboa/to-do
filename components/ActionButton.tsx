@@ -18,13 +18,13 @@ function ActionButton(propos:any) {
     }
 
     function addTask(text:string) {
+        setVisible(false);
         const task:TaskModel = {
             index: 4,
             task: text,
             finished: false
         }
         propos.addTask(task);
-        setVisible(false);
     }
 
 
