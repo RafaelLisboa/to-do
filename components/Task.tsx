@@ -10,7 +10,7 @@ export default function Task(props: any) {
             </View>
             <View style={styles.taskContainer}>
                 <Text style={styles.task}>{props.task}</Text>
-                <TouchableOpacity onPress={() => props.deleteTask()}>
+                <TouchableOpacity onPress={() => props.deleteTask(props.index)}>
                     <MaterialIcons style={styles.delete} name={"delete"} size={20} color={"#fff"}></MaterialIcons>
                 </TouchableOpacity>
             </View>

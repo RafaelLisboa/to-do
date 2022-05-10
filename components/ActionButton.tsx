@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { TouchableOpacity, View } from "react-native";
+import { TouchableOpacity, View,  StyleSheet } from "react-native";
 import { Octicons } from '@expo/vector-icons';
 import AddTaskDialog from "./AddTaskDialog";
+import TaskModel from "../models/TaskModel";
 
 
 function ActionButton(propos:any) {
@@ -16,14 +17,19 @@ function ActionButton(propos:any) {
         setVisible(true);
     }
 
-    function addTask() {
-        console.log("Adicionei ");
+    function addTask(text:string) {
+        const task:TaskModel = {
+            index: 4,
+            task: text,
+            finished: false
+        }
+        propos.addTask(task);
         setVisible(false);
     }
 
 
     return (
-        <View>
+        <View >
             <TouchableOpacity
                 style={{
                 borderWidth: 1,
@@ -32,11 +38,12 @@ function ActionButton(propos:any) {
                 justifyContent: 'center',
                 width: 70,
                 position: 'absolute',
-                bottom: 25,
                 right: 25,
+                top: 80,
                 height: 70,
                 backgroundColor: '#fff',
                 borderRadius: 100,
+                zIndex: 999999999
                 }}
                onPress = {() => showDialog()} 
             >
@@ -47,5 +54,13 @@ function ActionButton(propos:any) {
     );
 }
 
+const styles = StyleSheet.create({
+    button : {
+        position: 'absolute',
+        right:845,
+
+        zIndex: 99999999
+    }
+})
 
 export default ActionButton;
