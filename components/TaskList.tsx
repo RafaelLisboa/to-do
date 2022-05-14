@@ -1,24 +1,43 @@
 import React, { useEffect, useState } from "react"
 import { ScrollView, View, StyleSheet } from "react-native"
-import taskMocks from "../mocks/TaskMocks";
 import Task from "./Task";
 import ActionButton from "./ActionButton";
 import TaskModel from "../models/TaskModel";
+import TaskService from "../services/TaskService";
 
 export default function TaskList() {
-    
-  const [taskList, setTaskList] = useState<TaskModel[]>(taskMocks);
 
-  function deleteTaskByIndex(taskIndex:number) {
+  let taskService: TaskService = TaskService.getInstance();
+
+  const [taskList, setTaskList] = useState<TaskModel[]>([]);
+
+  function deleteTaskByIndex(taskIndex:number): void {
     let newArray = [...taskList];     
     newArray.splice(newArray.findIndex(t => t.index + 1 === taskIndex), 1);
-    setTaskList(newArray);
+    setNewTaskList(newArray);
   }
 
-  function addTask(newTask:TaskModel) {
+  function addTask(newTask:TaskModel): void {
     taskList.push(newTask);
-      setTaskList([...taskList]);
+    setNewTaskList([...taskList]);
   }
+
+  function setNewTaskList(newTaskList:TaskModel[]): void {
+    taskService.save(newTaskList);
+    setTaskList(newTaskList);
+  }
+
+  useEffect(()=> {
+        let tasks: TaskModel[] | null = null;
+        const getTasks = async() => {
+            tasks = await taskService.loadAll();
+            if (tasks !== null) {
+                setTaskList(tasks);
+            }    
+        }
+        
+        getTasks();
+    },[])
 
     return (
         <View>
@@ -40,7 +59,5 @@ const styles = StyleSheet.create({
     button: {
         marginTop: 300
     }
-    
-    
   });
   
