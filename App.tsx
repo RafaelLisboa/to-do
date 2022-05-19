@@ -10,7 +10,7 @@ export default function App() {
     <View style={styles.container}>
       <StatusBar style="inverted" />
       <Text style={styles.heading}>Lista de Tarefas</Text>
-      <TaskList></TaskList>
+      <TaskList />
     </View>
   );
 }

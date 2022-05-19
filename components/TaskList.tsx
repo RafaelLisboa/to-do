@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from "react"
-import { ScrollView, View, StyleSheet } from "react-native"
+import { ScrollView, View, StyleSheet, useWindowDimensions } from "react-native"
 import Task from "./Task";
 import ActionButton from "./ActionButton";
 import TaskModel from "../models/TaskModel";
 import TaskService from "../services/TaskService";
 
-export default function TaskList() {
 
+
+export default function TaskList() {
+    
     let taskService: TaskService = TaskService.getInstance();
+    const window = useWindowDimensions();
 
     const [taskList, setTaskList] = useState<TaskModel[]>([]);
 
@@ -41,22 +44,26 @@ export default function TaskList() {
 
     return (
         <View>
-            <ScrollView>
-                {
-                    taskList.map((t, index) => {
-                        return <Task key={index} index={index + 1} task={t.task} deleteTask={deleteTaskByIndex}></Task>
-                    })
-                }
-            </ScrollView>
-            <View style={styles.button}>
+            <View >
+                <ScrollView style = {{
+                maxHeight: window.height - 265,
+                minHeight: window.height - 190
+                }}>
+                    {
+                        taskList.map((t, index) => {
+                            return <Task key={index} index={index + 1} task={t.task} deleteTask={deleteTaskByIndex}></Task>
+                        })
+                    }
+                </ScrollView>
+            </View>
+            <View>
                 <ActionButton addTask={addTask}></ActionButton>
             </View>
         </View>
     )
+    
+    
 }
 
-const styles = StyleSheet.create({
-    button: {
-        marginTop: 300
-    }
-});
+
+
