@@ -3,11 +3,24 @@ import { TouchableOpacity, View,  StyleSheet } from "react-native";
 import { Octicons } from '@expo/vector-icons';
 import AddTaskDialog from "./AddTaskDialog";
 import TaskModel from "../models/TaskModel";
+import TaskService from "../services/TaskService";
 
 
 function ActionButton(propos:any) {
 
     const [visible, setVisible] = useState(false);
+    const taskService: TaskService = TaskService.getInstance();
+
+    async function getTaskRegisteredCount() : Promise<number> {
+        const tasks:TaskModel[] | null = await taskService.loadAll();
+
+        if (tasks) {
+            return  tasks.length + 1;
+        }
+        else {
+            return 0;
+        }
+    }
 
     function handleCancel() {
         setVisible(false);
@@ -17,10 +30,10 @@ function ActionButton(propos:any) {
         setVisible(true);
     }
 
-    function addTask(text:string) {
+    async function addTask(text:string) {
         setVisible(false);
         const task:TaskModel = {
-            index: 4,
+            index: await getTaskRegisteredCount(),
             task: text,
             finished: false
         }

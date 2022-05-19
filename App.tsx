@@ -1,18 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useEffect, useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import ActionButton from './components/ActionButton';
-import Task from './components/Task';
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
 import TaskList from './components/TaskList';
-import taskMocks from './mocks/TaskMocks';
-import TaskModel from './models/TaskModel';
 
 export default function App() {
 
 
   return (
     <View style={styles.container}>
-      <StatusBar style="auto" />
+      <StatusBar style="inverted" />
       <Text style={styles.heading}>Lista de Tarefas</Text>
       <TaskList></TaskList>
     </View>

@@ -25,7 +25,6 @@ export default class TaskService {
             await AsyncStorage.setItem(TaskService.DEFAULT_KEY, jsonString);
         }
         catch (error) {
-            //TODO: implementar futuramente tratamento de erro
             alert(error);
         }
     }
