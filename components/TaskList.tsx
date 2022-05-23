@@ -46,8 +46,8 @@ export default function TaskList() {
         <View>
             <View >
                 <ScrollView style = {{
-                maxHeight: window.height - 265,
-                minHeight: window.height - 190
+                maxHeight: window.height - 289,
+                minHeight: window.height - 260
                 }}>
                     {
                         taskList.map((t, index) => {
